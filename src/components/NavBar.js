@@ -1,6 +1,6 @@
 const NavBar = () => {
 	return (
-		<div className="navbar bg-base-300 bg-neutral">
+		<div className="navbar bg-base-300 fixed top-0 z-50">
 			<div className="flex-1">
 				<a href="./#" className="btn btn-ghost normal-case text-xl" >Tiendita</a>
 			</div>
