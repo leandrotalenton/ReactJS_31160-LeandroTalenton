@@ -1,6 +1,6 @@
 const ItemListContainer = (props) => {
     return (
-        <div className='container flex flex-wrap justify-center bg-300 mx-auto my-4'>
+        <div className='container m-auto grid grid-cols-[repeat(auto-fit,_minmax(24rem,_1fr))] justify-items-center'>
             {props.children}
         </div>
     )
