@@ -6,7 +6,7 @@ const Card = (props) => {
             <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{props.name}</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <p>Current stock: {props.stock} units.</p>
                 <p className="text-right mx-2">${props.price}</p>
                 <ItemCount initial={props.initial} stock={props.stock}/>
             </div>
