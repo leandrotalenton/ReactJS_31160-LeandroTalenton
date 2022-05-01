@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import CartWidget from './components/CartWidget';
 import ItemListContainer from './components/ItemListContainer';
-import ItemList from './components/ItemList';
 
 function App() {
   return (
@@ -14,9 +13,7 @@ function App() {
         <CartWidget/>
       </NavBar>
       <Hero/>
-      <ItemListContainer>
-        <ItemList/>
-      </ItemListContainer>
+      <ItemListContainer/>
       <Footer/>
     </>
   );
