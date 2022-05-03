@@ -2,6 +2,14 @@
   text-align: center;
 }
 
+*{
+  scroll-behavior: smooth;
+}
+
+#anchor-name {
+  scroll-margin-top: 60px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
