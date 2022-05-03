@@ -22,7 +22,6 @@ const ItemDetail = () => {
                 <Link to={`/item/${parseInt(params.itemId) + 1}`} className="btn btn-primary">Siguiente</Link>
             </div>
         </div>
-        {params.itemId}
     </div>
     )
 }
