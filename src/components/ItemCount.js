@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 const ItemCount = (props) => {
     const [amt, setAmt] = useState(parseInt(props.initial));
@@ -13,7 +14,7 @@ const ItemCount = (props) => {
                 <div>{amt}</div>
                 <button onClick={addAmt} className="btn btn-primary w-1 rounded-l-none">+</button>
             </div>
-            <button className="btn btn-primary w-[47.5%]">Details</button>
+            <Link className="btn btn-primary w-[47.5%]" to={`/item/${props.id}`}>Details</Link>
         </div>
     )
 }

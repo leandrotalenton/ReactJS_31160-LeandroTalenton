@@ -10,7 +10,7 @@ const Item = (props) => {
                 <p>Product ID: {props.id}</p>
                 <p>Current stock: {props.stock} units.</p>
                 <p className="text-right mx-2">${props.price}</p>
-                <ItemCount initial={props.initial} stock={props.stock}/>
+                <ItemCount id={props.id} initial={props.initial} stock={props.stock}/>
             </div>
         </div>
 
