@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom"
+
 const NavBar = (props) => {
 	return (
+		<>
 		<div className="navbar bg-base-300 fixed top-0 z-50">
 			<div className="flex-1">
-				<a href="./#" className="btn btn-ghost normal-case text-xl" >Tiendita de zapatillas</a>
+				<Link to='/' className="btn btn-ghost normal-case text-xl">Tiendita de zapatillas</Link>
 			</div>
 			<div className="flex-none">
 				<ul className="menu menu-horizontal p-0">
@@ -12,8 +15,8 @@ const NavBar = (props) => {
 							<svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
 						</a>
 						<ul className="p-2 bg-base-300">
-							<li><a href="./#">Adidas</a></li>
-							<li><a href="./#">Nike</a></li>
+							<li><Link to={`/category/Adidas`}>Adidas</Link></li>
+							<li><Link to={`/category/Nike`}>Nike</Link></li>
 						</ul>
 					</li>
 				</ul>
@@ -39,6 +42,8 @@ const NavBar = (props) => {
 				</div>
 			</div>
 		</div>
+		<div className="h-16"></div>
+		</>
 	)
 }
 export default NavBar

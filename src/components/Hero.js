@@ -1,6 +1,6 @@
 const Hero = () => {
     return (
-        <div className="hero min-h-[95vh] mt-16" style={{backgroundImage: `url(https://api.lorem.space/image/fashion?w=1000&h=800)`}}>
+        <div className="hero min-h-[95vh]" style={{backgroundImage: `url(https://api.lorem.space/image/fashion?w=1000&h=800)`}}>
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">
