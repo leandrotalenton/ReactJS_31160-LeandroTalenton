@@ -1,19 +1,16 @@
-import ItemCount from "./ItemCount"
+import { Link } from "react-router-dom"
 
 const Item = (props) => {
     return (
-        <div>
         <div className="card w-64 bg-base-100 shadow-xl m-4">
             <figure><img src={props.pictureUrl} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{props.title} {props.brand}</h2>
                 <p>Product ID: {props.id}</p>
                 <p>Current stock: {props.stock} units.</p>
-                <p className="text-right mx-2">${props.price}</p>
-                <ItemCount id={props.id} initial={props.initial} stock={props.stock}/>
+                <p className="text-left mx-2">Price: ${props.price}</p>
+                <Link className="btn btn-primary w-[100%]" to={`/item/${props.id}`}>Details</Link>
             </div>
-        </div>
-
         </div>
     )
 }

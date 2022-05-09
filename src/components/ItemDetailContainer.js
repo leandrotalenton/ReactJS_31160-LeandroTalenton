@@ -4,7 +4,7 @@ import ItemDetail from "./ItemDetail";
 import { itemsData } from "../data/itemsData"
 
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = (props) => {
 
     const params = useParams()
     const [item,setItem] = useState( {} ) 
