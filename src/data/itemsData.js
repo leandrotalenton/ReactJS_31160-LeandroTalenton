@@ -9,3 +9,11 @@ export const itemsData = [
     {id:`8`,title:`Zapatilla 8`,price:88,pictureUrl:"https://api.lorem.space/image/shoes?w=400&h=225",stock:8,description:`description 8 description 8 description 8 description 8 description 8 `,brand:`Nike`},
     {id:`9`,title:`Zapatilla 9`,price:99,pictureUrl:"https://api.lorem.space/image/shoes?w=400&h=225",stock:9,description:`description 9 description 9 description 9 description 9 description 9 `,brand:`Nike`}
 ]
+
+const task = new Promise((resp)=>{
+    resp(itemsData)
+},2000)
+
+export const getItem = ()=>{
+    return task
+}

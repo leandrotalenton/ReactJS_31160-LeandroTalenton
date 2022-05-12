@@ -23,7 +23,7 @@ const ItemDetail = (props) => {
                 <Link to={`/item/${parseInt(props.params.itemId) + 1}`} className="btn btn-primary">Siguiente</Link> */}
                 {enCarrito?
                 <Link to='/' className="btn btn-primary">ir al carrito</Link>:
-                <ItemCount stock={props.item.stock} onAdd={onAdd}/>
+                <ItemCount stock={props.item.stock} onAdd={onAdd} id={props.item.id}/>
                 }
             </div>
         </div>
