@@ -9,8 +9,10 @@ const AppContextProvider = ({children}) => {
 
     const [products, setProducts] = useState([])
 
+
     useEffect(() => {
         getItem().then((resp)=>setProducts(resp))
+        // console.log(products)
     })
     
     return (

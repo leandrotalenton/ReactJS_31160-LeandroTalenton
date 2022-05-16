@@ -2,16 +2,16 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Item from "./Item"
 
-const ItemList = (props) => {
+const ItemList = ({productArray}) => {
     
     const params = useParams()
     const [itemList,setItemList] = useState( [] ) 
 
     useEffect(() => {
         params.categoryId
-        ? setItemList(props.productArray.filter(i=>i.brand === params.categoryId))
-        : setItemList(props.productArray)
-    }, [params.categoryId, props.productArray])
+        ? setItemList(productArray.filter(i=>i.brand === params.categoryId))
+        : setItemList(productArray)
+    }, [params.categoryId, productArray])
 
     // console.log(itemList)
 

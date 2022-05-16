@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
+import CartWidget from "./CartWidget"
 
-const NavBar = (props) => {
+
+const NavBar = () => {
 	return (
 		<>
 		<div className="navbar bg-base-300 fixed top-0 z-50">
@@ -10,10 +12,10 @@ const NavBar = (props) => {
 			<div className="flex-none">
 				<ul className="menu menu-horizontal p-0">
 					<li tabIndex="0">
-						<a href="./#">
+						<Link to={`/`}>
 							Marca
 							<svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-						</a>
+						</Link>
 						<ul className="p-2 bg-base-300">
 							<li><Link to={`/category/Adidas`}>Adidas</Link></li>
 							<li><Link to={`/category/Nike`}>Nike</Link></li>
@@ -22,7 +24,7 @@ const NavBar = (props) => {
 				</ul>
 			</div>
 			<div className="flex-none">
-				{props.children}
+				<CartWidget />
 				<div className="dropdown dropdown-end">
 					<label tabIndex="0" className="btn btn-ghost btn-circle avatar">
 						<div className="w-10 rounded-full">
@@ -31,13 +33,13 @@ const NavBar = (props) => {
 					</label>
 					<ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52">
 						<li>
-							<a href="./#" className="justify-between">
+							<Link to={`/`} className="justify-between">
 								Profile
 								<span className="badge">New</span>
-							</a>
+							</Link>
 						</li>
-						<li><a href="./#" >Settings</a></li>
-						<li><a href="./#" >Logout</a></li>
+						<li><Link to={`/`} >Settings</Link></li>
+						<li><Link to={`/`} >Logout</Link></li>
 					</ul>
 				</div>
 			</div>

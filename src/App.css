@@ -6,7 +6,7 @@
   scroll-behavior: smooth;
 }
 
-#anchor-name {
+/* #anchor-name {
   scroll-margin-top: 60px;
 }
 
@@ -43,4 +43,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

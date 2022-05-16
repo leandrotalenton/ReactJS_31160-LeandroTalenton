@@ -12,7 +12,7 @@ export const itemsData = [
 
 const task = new Promise((resp)=>{
     resp(itemsData)
-},2000)
+})
 
 export const getItem = ()=>{
     return task
