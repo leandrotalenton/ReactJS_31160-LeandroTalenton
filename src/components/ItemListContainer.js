@@ -15,7 +15,7 @@ const ItemListContainer = () => {
     useEffect(()=>{
 
         const collectionRef = categoryId
-            ? query( collection(db, 'items') , where(`brand`,`==`,categoryId))/* tiene 2 parametros: 1) la referencia 2)el filtro que le voy a aplicar(where()): where tiene 3 parametros a)el nombre del campo b) como voy a comprar c) contra que lo voy a comparar */
+            ? query( collection(db, 'items') , where(`brand`,`==`,categoryId))/* query tiene 2 parametros: 1) la referencia 2)el filtro que le voy a aplicar(where()): where tiene 3 parametros a)el nombre del campo b) como voy a comprar c) contra que lo voy a comparar */
             : collection(db, 'items')
 
         getDocs(collectionRef).then(snapshot=>{/* traeme los documentos de la coleccion items ('items') de mi base de datos (db). el snapshot tiene la respuesta y una de sus propiedadess es docs que tiene el array con mis items  */
@@ -28,10 +28,13 @@ const ItemListContainer = () => {
     },[categoryId])
 
 
-
     return (
         <div id="anchor-name">
-            <ItemList productArray={productArray}/>
+            {
+            productArray.length>0
+                ?<ItemList productArray={productArray}/>
+                :<div className="text-2xl mx-auto font-bold text-center min-h-[60vh] py-10 ">No hay productos para mostrar</div>
+            }
         </div>
     )
 }

@@ -1,8 +1,26 @@
 import { Link } from "react-router-dom"
 import CartWidget from "./CartWidget"
+import { getDocs, collection } from "firebase/firestore"
+import { db } from ".."
+import { useEffect, useState } from "react"
+
 
 
 const NavBar = () => {
+
+	const [categories, setCategories] = useState([])
+
+	useEffect(() => {
+		getDocs(collection(db,'categories')).then(snapshot=>{
+			const categorias = snapshot.docs.map(doc => {
+				return {id: doc.id, ...doc.data()}
+			})
+			setCategories(categorias)
+		})
+	}, [])
+	
+
+
 	return (
 		<>
 		<div className="navbar bg-base-300 fixed top-0 z-50">
@@ -17,8 +35,11 @@ const NavBar = () => {
 							<svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
 						</Link>
 						<ul className="p-2 bg-base-300">
-							<li><Link to={`/category/Adidas`}>Adidas</Link></li>
-							<li><Link to={`/category/Nike`}>Nike</Link></li>
+							{categories.map( cat => {
+								return <li key={cat.description}><Link to={`/category/${cat.description}`}>{cat.description}</Link></li>
+							})}
+							{/* <li><Link to={`/category/Adidas`}>Adidas</Link></li>
+							<li><Link to={`/category/Nike`}>Nike</Link></li> */}
 						</ul>
 					</li>
 				</ul>
