@@ -1,17 +1,31 @@
-import { useState } from "react"
-import { useAppContext } from "./context/AppContext";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react"
+import { db } from "..";
 import { useCartContext } from "./context/CartContext";
 
+
 const ItemCount = (props) => {
+
+    const { addToCart } = useCartContext()
+    const [productArray, setProductArray] = useState([])
+
     const [amt, setAmt] = useState(1);
     const addAmt = () => amt < parseInt(props.stock) && setAmt(amt + 1);
     const substractAmt = () => amt > 1 && setAmt(amt - 1);
 
-    const { addToCart } = useCartContext()
-    const { products } = useAppContext()
+    useEffect(()=>{
+
+        getDocs(collection(db, 'items')).then(snapshot=>{/* traeme los documentos de la coleccion items ('items') de mi base de datos (db). el snapshot tiene la respuesta y una de sus propiedadess es docs que tiene el array con mis items  */
+            const products = snapshot.docs.map(doc => {
+                return {id2:doc.id, ...doc.data()}
+            })
+            setProductArray(products)
+        })
+    
+    },[])
 
     const handleClick = (id, cantidad) => {
-        const findProduct = products.find((producto)=>producto.id===id)
+        const findProduct = productArray.find((producto)=>producto.id===id)
 
         if(!findProduct){
             alert(`error`)

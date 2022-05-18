@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 /* firebase_____________________________________________________________ */
 import { initializeApp } from "firebase/app";
+import { getFirestore } from 'firebase/firestore';
 
 
 const firebaseConfig = {
@@ -18,6 +19,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app)  /* esto antes estaba en appContext */
+
 /* firebase_____________________________________________________________ */
 
 ReactDOM.render(
