@@ -12,8 +12,6 @@ const CartWidget = () => {
 
     let itemAmt = cart.reduce((acc, i)=>{return acc + i.quantity},0)
 
-    console.log(itemAmt)
-
     return (
         <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle">
@@ -24,8 +22,14 @@ const CartWidget = () => {
             </label>
             <div tabIndex="0" className="mt-3 card card-compact dropdown-content w-52 bg-base-300 shadow">
                 <div className="card-body">
-                    <span className="font-bold text-info">{itemAmt>0?(itemAmt===1?`1 Item`:`${itemAmt} Items`):`Carrito Vacio`}</span>
-                    {cart.map(i=>{return <span key={i.id} className="font-bold text-base">{i.title} x {i.quantity}</span>})}
+                    <span className="font-bold text-info">
+                        {itemAmt>0
+                            ?(itemAmt===1
+                                ?`1 Item`
+                                :`${itemAmt} Items`)
+                            :`Carrito Vacio`}
+                    </span>
+                    {cart.map(i=><span key={i.id} className="font-bold text-base">{i.title} x {i.quantity}</span>)}
                     <span className="text-info">Subtotal: ${cart.reduce((acc, i)=> acc + (i.price*i.quantity),0)}</span>
                     <div className="card-actions">
                         <Link to={`/cart`} className="btn btn-primary btn-block">Ir al carrito</Link>

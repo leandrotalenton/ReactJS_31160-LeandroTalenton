@@ -28,7 +28,7 @@ const ItemCount = (props) => {
                 <button onClick={substractAmt} className="btn btn-primary p-4 w-1 rounded-r-none">-</button>
                 <div>{amt}</div>
                 <button onClick={addAmt} className="btn btn-primary w-1 rounded-l-none">+</button>
-                <button onClick={()=>handleClick(props.id, amt)} className="btn btn-primary">agregar al carrito</button>
+                <button onClick={()=>handleClick(parseInt(props.id), amt)} className="btn btn-primary">agregar al carrito</button>
             </div>
         </div>
     )
