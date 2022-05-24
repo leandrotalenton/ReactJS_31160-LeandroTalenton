@@ -1,9 +1,69 @@
+import { useState } from "react";
 import { Link } from "react-router-dom"
 import { useCartContext } from "./context/CartContext"
+import { writeBatch, getDocs, query, where, collection, documentId, Timestamp, addDoc } from "firebase/firestore"
+import { db } from "../index"
 
 const Cart = () => {
 
-    const {cart, deleteFromCart} = useCartContext()
+    const {cart, deleteFromCart, deleteCart} = useCartContext()
+
+    const [nombreCompleto, setNombreCompleto] = useState('');
+    const [cellPhone, setCellPhone] = useState('');
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        crearOrden()
+        deleteCart();
+    }
+
+    const outOfStock = []
+
+    const crearOrden = ()=>{
+        const orden = {
+            items: cart,
+            comprador: {
+                nombre: nombreCompleto,
+                telefono: cellPhone,
+                email: email
+            },
+            total: 0,
+            fecha: Timestamp.fromDate(new Date())
+        }
+
+        const batch = writeBatch(db)
+
+        const collectionRef = collection(db, `items`)
+        const ids = cart.map(prod => prod.id2) /* supongo que mis productos tienen id */
+
+        getDocs(query(collectionRef,where(documentId(),`in`,ids)))
+            .then(snapshot => {
+                snapshot.docs.forEach(doc => {
+                    const dataDoc = doc.data()
+                    cart.map(prod=>console.log(`que verga me trae esto?`,prod))
+                    const prodStock = cart.find(prod => {console.log(prod.id2,`===`,doc.id); return prod.id2 === doc.id})?.quantity
+                    if(dataDoc.stock >= prodStock) {
+                        batch.update(doc.ref, { stock: dataDoc.stock - prodStock})
+                    } else {
+                        outOfStock.push({id: doc.id, ...dataDoc})
+                    }
+                })
+            }).then(()=>{
+                if(outOfStock.length === 0){
+                    const collectionRef = collection(db,`ordenes`)
+                    return addDoc(collectionRef, orden)
+                } else {
+                    console.log(`algo salio mal :(`)
+                }
+            }).then(({id})=>{
+                batch.commit()
+                console.log(`el id de la orden es ${id}`)
+            }).catch(error => {
+                console.log(error)
+            })
+    }
+
 
     return (
         <div className="my-10 mx-auto min-h-[60vh] max-w-3xl"> {cart.length===0
@@ -49,15 +109,30 @@ const Cart = () => {
                         </button>
                     </div>
                     <form className="flex flex-col gap-1 justify-around">
-                        <input className="border-2 border-gray-300 rounded-lg" type="text" name="name" placeholder="Nombres" required="" />
-                        <input className="border-2 border-gray-300 rounded-lg" type="phone" name="phone" placeholder="Celular" required="" />
-                        <input className="border-2 border-gray-300 rounded-lg" type="email" name="email" placeholder="Correo" required="" />
-                        <input className="border-2 border-gray-300 rounded-lg" type="email" name="emailr" placeholder="Repita el correo" required="" />
-                        <small className="font-bold text-base">Sus datos correctos nos permitirán entregarle los productos de forma correcta y oportuna.</small>
-                        <Link to={`/`}  type="submit" className="btn btn-xs btn-primary h-3"> Terminar Compra</Link>
+                        <input className="border-2 rounded-lg px-2"
+                            placeholder="NombreCompleto"
+                            type='text'
+                            name='nombreCompleto'
+                            value={nombreCompleto}
+                            onChange={(e) => setNombreCompleto(e.target.value)}
+                            />
+                        <input className="border-2 rounded-lg px-2"
+                            placeholder="Celular"
+                            type="phone"
+                            name="phone"  
+                            value={cellPhone}
+                            onChange={(e) => setCellPhone(e.target.value)}
+                        />
+                        <input className="border-2 rounded-lg px-2"
+                            placeholder="E-mail"
+                            type="email"
+                            name="email"  
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                        <button className="btn btn-xs btn-primary h-3" type="submit" onClick={handleSubmit}>Terminar Compra</button>
                     </form>
                 </div>
-
             </div>}
         </div>
     )
