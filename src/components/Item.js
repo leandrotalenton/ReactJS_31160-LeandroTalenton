@@ -6,10 +6,10 @@ const Item = (props) => {
             <figure><img src={props.pictureUrl} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{props.title} {props.brand}</h2>
-                <p>Product ID: {props.id}</p>
-                <p>Current stock: {props.stock} units.</p>
-                <p className="text-left mx-2">Price: ${props.price}</p>
-                <Link className="btn btn-primary w-[100%]" to={`/item/${props.id}`}>Details</Link>
+                {/* <p>Product ID: {props.id}</p> */}
+                <p>Stock: {props.stock} unidades.</p>
+                <p className="text-left">Precio: ${props.price}</p>
+                <Link className="btn btn-primary w-[100%]" to={`/item/${props.id}`}>Detalles</Link>
             </div>
         </div>
     )

@@ -29,7 +29,7 @@ const ItemListContainer = () => {
 
 
     return (
-        <div id="anchor-name">
+        <div id="anchor-name" className="min-h-[calc(100vh-17.8rem)] bg-zinc-50">
             {
             productArray.length>0
                 ?<ItemList productArray={productArray}/>

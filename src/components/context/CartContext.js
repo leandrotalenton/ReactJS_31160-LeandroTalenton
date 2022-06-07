@@ -4,19 +4,17 @@ const CartContext = createContext()
 
 export const useCartContext = () => useContext(CartContext)
 
-const CartContextProvider = ({children}) => {
-    /* cart va ser un array de objetos [{id,cantidad},{id,cantidad},...] */
-    
+const CartContextProvider = ({children}) => {    
     const [cart, setCart] = useState([])
 
-    const isInCart = (id)=>cart.find((producto)=>producto.id === id) // posible reurns: id value (found), undefined (not found)
+    const isInCart = (id2)=>cart.find((producto)=>producto.id2 === id2) // posible reurns: id value (found), undefined (not found)
 
     const addToCart = (producto, cantidad) => {
         const newCart = [...cart]
-        const productoIsInCart = isInCart(producto.id)
+        const productoIsInCart = isInCart(producto.id2)
 
         if(productoIsInCart){ // if undefined then falsy
-            newCart[newCart.findIndex((prod)=>prod.id === productoIsInCart.id)].quantity += cantidad
+            newCart[newCart.findIndex((prod)=>prod.id2 === productoIsInCart.id2)].quantity += cantidad
             setCart(newCart)
         } else {
             producto.quantity = cantidad
@@ -26,10 +24,10 @@ const CartContextProvider = ({children}) => {
 
     const deleteFromCart = (producto)=>{
         const newCart = [...cart]
-        const productoIsInCart = isInCart(producto.id)
+        const productoIsInCart = isInCart(producto.id2)
 
         if(productoIsInCart){ // should never be undefined
-            setCart(newCart.filter((prod)=>prod.id!==producto.id))
+            setCart(newCart.filter((prod)=>prod.id2!==producto.id2))
         }
     }
 

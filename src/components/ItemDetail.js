@@ -19,9 +19,13 @@ const ItemDetail = (props) => {
             <p>Stock disponible: {props.item.stock} unidades</p>
             <p>Precio: ${props.item.price}</p>
             <div className="card-actions justify-end">
-                {enCarrito?
-                <><Link to='/' className="btn btn-primary">Seguir comprando</Link><Link to='/cart' className="btn btn-primary">ir al carrito</Link></>:
-                <ItemCount stock={props.item.stock} onAdd={onAdd} id={props.item.id}/>
+                {
+                enCarrito
+                ?<>
+                    <Link to='/' className="text-xs sm:text-sm btn btn-primary">Seguir comprando</Link>
+                    <Link to='/cart' className="text-xs sm:text-sm btn btn-primary">ir al carrito</Link>
+                </>
+                :<ItemCount stock={props.item.stock} onAdd={onAdd} id={props.item.id}/>
                 }
             </div>
         </div>

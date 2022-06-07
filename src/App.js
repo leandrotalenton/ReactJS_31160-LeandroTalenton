@@ -8,11 +8,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import CartContextProvider from './components/context/CartContext';
 import Cart from './components/Cart';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <CartContextProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <NavBar />
         <Routes>
           <Route path='/' element={<>

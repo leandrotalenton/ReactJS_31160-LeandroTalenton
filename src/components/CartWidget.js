@@ -29,7 +29,7 @@ const CartWidget = () => {
                                 :`${itemAmt} Items`)
                             :`Carrito Vacio`}
                     </span>
-                    {cart.map(i=><span key={i.id} className="font-bold text-base">{i.title} x {i.quantity}</span>)}
+                    {cart.map(i=><span key={i.id2} className="font-bold text-base">{i.title} x {i.quantity}</span>)}
                     <span className="text-info">Subtotal: ${cart.reduce((acc, i)=> acc + (i.price*i.quantity),0)}</span>
                     <div className="card-actions">
                         <Link to={`/cart`} className="btn btn-primary btn-block">Ir al carrito</Link>

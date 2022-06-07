@@ -37,11 +37,13 @@ const ItemCount = (props) => {
     }
 
     return (
-        <div className="card-actions justify-between ">
-            <div className="flex justify-between items-center rounded-xl w-[47.5%]">
-                <button onClick={substractAmt} className="btn btn-primary p-4 w-1 rounded-r-none">-</button>
-                <div>{amt}</div>
-                <button onClick={addAmt} className="btn btn-primary w-1 rounded-l-none">+</button>
+        <div className="card-actions">
+            <div className="flex justify-between items-center rounded-xl w-[47.5%] gap-6">
+                <div className="flex items-center gap-1">
+                    <button onClick={substractAmt} className="btn btn-primary p-4 w-1 rounded-r-none">-</button>
+                    <div className="w-4 text-center">{amt}</div>
+                    <button onClick={addAmt} className="btn btn-primary w-1 h-1 rounded-l-none">+</button>
+                </div>
                 <button onClick={()=>handleClick(parseInt(props.id), amt)} className="btn btn-primary">agregar al carrito</button>
             </div>
         </div>

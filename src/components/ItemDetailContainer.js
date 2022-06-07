@@ -28,7 +28,7 @@ const  ItemDetailContainer = () => {
 
 
     return (
-        <div className="mt-[65.94px] min-h-[70vh] flex justify-center content-center  ">
+        <div className="py-8 min-h-[calc(100vh-17.8rem)] flex justify-center content-center bg-zinc-50">
             <ItemDetail item={item}/>
         </div>
     )
