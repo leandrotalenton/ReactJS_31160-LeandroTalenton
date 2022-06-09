@@ -44,14 +44,12 @@ const Cart = () => {
 
         const collectionRef = collection(db, `items`)
         const ids = cart.map(prod => prod.id)
-        console.log(ids)
 
         getDocs(query(collectionRef,where(documentId(),`in`,ids)))
         .then(snapshot => {
             snapshot.docs.forEach(doc => {
                 const dataDoc = doc.data()
-                // cart.map(prod=>console.log(`que me trae esto?`,prod))
-                const prodStock = cart.find(prod => {console.log(prod.id,`===`,doc.id); return prod.id === doc.id})?.quantity
+                const prodStock = cart.find(prod => {return prod.id === doc.id})?.quantity
                 if(dataDoc.stock >= prodStock) {
                     batch.update(doc.ref, { stock: dataDoc.stock - prodStock})
                 } else {
@@ -67,7 +65,6 @@ const Cart = () => {
             }
         }).then(({id})=>{
             batch.commit()
-            console.log(`el id de la orden es ${id}`)
             setIdCompra(id)
         }).catch(error => {
             console.log(error)

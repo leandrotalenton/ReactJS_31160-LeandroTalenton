@@ -1,7 +1,7 @@
 # Proyecto tiendita de zapatillas:
-Este es un proyecto con fines didacticos para el curso de React de `CoderHouse`, comision `31160`.\
-Las partes funcionales de la aplicacion son el logo de inicio, el dropdown de marcas, el mini cart widget, los links en los productos y el cart.\
-La seccion de cuenta de usuario y los links del footer son unicamente decorativos.
+Este es un proyecto con fines didácticos para el curso de React de `CoderHouse`, comisión `31160`.\
+Las partes funcionales de la aplicación son el logo de inicio, el dropdown de marcas, el mini cart widget, los links en los productos y el cart.\
+La sección de cuenta de usuario y los links del footer son únicamente decorativos.
 
 Para iniciar este proyecto simplemente ejecutar los siguientes comandos en tu CMD:\
 `git clone https://github.com/leandrotalenton/ReactJS_31160-LeandroTalenton.git`\
