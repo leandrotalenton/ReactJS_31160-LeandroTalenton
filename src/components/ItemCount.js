@@ -17,7 +17,7 @@ const ItemCount = (props) => {
 
         getDocs(collection(db, 'items')).then(snapshot=>{/* traeme los documentos de la coleccion items ('items') de mi base de datos (db). el snapshot tiene la respuesta y una de sus propiedadess es docs que tiene el array con mis items  */
             const products = snapshot.docs.map(doc => {
-                return {id2:doc.id, ...doc.data()}
+                return {id:doc.id, ...doc.data()}
             })
             setProductArray(products)
         })
@@ -44,7 +44,7 @@ const ItemCount = (props) => {
                     <div className="w-4 text-center">{amt}</div>
                     <button onClick={addAmt} className="btn btn-primary w-1 h-1 rounded-l-none">+</button>
                 </div>
-                <button onClick={()=>handleClick(parseInt(props.id), amt)} className="btn btn-primary">agregar al carrito</button>
+                <button onClick={()=>handleClick(props.id, amt)} className="btn btn-primary">agregar al carrito</button>
             </div>
         </div>
     )
